@@ -1,9 +1,15 @@
 import duckdb
-
 from pathlib import Path
 
-TRANSMISSION_FILE = Path("data/transmission_lines/TransmissionLine_CEC.shp")
-WILDLIFE_FILE = Path("data/public_lands/CDFW_Public_Access_Lands_[ds3077].shp")
+BASE_DIR = Path(__file__).resolve().parents[2]
+
+TRANSMISSION_FILE = (
+    BASE_DIR / "data" / "transmission_lines" / "TransmissionLine_CEC.shp"
+)
+
+WILDLIFE_FILE = (
+    BASE_DIR / "data" / "public_lands" / "CDFW_Public_Access_Lands_[ds3077].shp"
+)
 
 
 def load_data() -> duckdb.DuckDBPyConnection:
@@ -30,7 +36,6 @@ def load_data() -> duckdb.DuckDBPyConnection:
 
 
 def show_schema(con: duckdb.DuckDBPyConnection) -> None:
-
     print("\n=== TRANSMISSION SCHEMA ===")
 
     con.sql("""
@@ -49,9 +54,10 @@ def show_schema(con: duckdb.DuckDBPyConnection) -> None:
 
 
 def show_geometry_types(con: duckdb.DuckDBPyConnection) -> None:
+    print("\n=== TRANSMISSION GEOMETRY ===")
+
     con.sql("""
-        SELECT
-            typeof(geom)
+        SELECT typeof(geom)
         FROM transmission_lines
         LIMIT 1
     """).show()
@@ -59,8 +65,7 @@ def show_geometry_types(con: duckdb.DuckDBPyConnection) -> None:
     print("\n=== WILDLIFE GEOMETRY ===")
 
     con.sql("""
-        SELECT
-            typeof(geom)
+        SELECT typeof(geom)
         FROM wildlife_lands
         LIMIT 1
     """).show()

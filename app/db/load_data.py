@@ -3,6 +3,11 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 
+import duckdb
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parents[2]
+
 TRANSMISSION_FILE = (
     BASE_DIR / "data" / "transmission_lines" / "TransmissionLine_CEC.shp"
 )
@@ -11,9 +16,12 @@ WILDLIFE_FILE = (
     BASE_DIR / "data" / "public_lands" / "CDFW_Public_Access_Lands_[ds3077].shp"
 )
 
+SOURCE_CRS = "EPSG:3310"
+WEB_CRS = "EPSG:4326"
+
 
 def load_data() -> duckdb.DuckDBPyConnection:
-    """Load both Shapefiles into DuckDB."""
+    """Load spatial datasets into DuckDB using EPSG:3310 as the canonical CRS."""
 
     con = duckdb.connect()
 
@@ -21,14 +29,18 @@ def load_data() -> duckdb.DuckDBPyConnection:
     con.sql("LOAD spatial")
 
     con.sql(f"""
-        CREATE VIEW transmission_lines AS
-        SELECT *
+        CREATE OR REPLACE VIEW transmission_lines AS
+        SELECT
+            *,
+            ST_Transform(geom, '{SOURCE_CRS}') AS geom_3310
         FROM ST_Read('{TRANSMISSION_FILE}')
     """)
 
     con.sql(f"""
-        CREATE VIEW wildlife_lands AS
-        SELECT *
+        CREATE OR REPLACE VIEW wildlife_lands AS
+        SELECT
+            *,
+            ST_Transform(geom, '{SOURCE_CRS}') AS geom_3310
         FROM ST_Read('{WILDLIFE_FILE}')
     """)
 

@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "duckdb": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "/home/joshua/Documents/01-Projects/free-transmission-wildlife",
+        "python",
+        "app/server/server.py"
+      ]
+    }
+  }
+}

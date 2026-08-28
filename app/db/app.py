@@ -12,7 +12,7 @@ from queries import (
 con = load_data()
 
 
-# print(summarize_transmission_lines(con))
-# print(summarize_wildlife_lands(con))
+print(summarize_transmission_lines(con))
+print(summarize_wildlife_lands(con))
 print(find_wildlife_hit_by_transmission(con))
-# print(calculate_overlap_km(con))
+print(calculate_overlap_km(con))

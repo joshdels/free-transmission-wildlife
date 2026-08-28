@@ -4,7 +4,6 @@ dev:
 	uv run mcp dev app/server/server.py
 
 install:
-	pkill -f claude
 	uv run mcp install app/server/server.py \
 		--with duckdb \
 		--with pandas \
@@ -14,5 +13,8 @@ install:
 api:
 	uv run uvicorn app.api.main:app --reload
 
-data:
+datas:
 	python app/db/load_data.py
+
+kill:
+	pkill -f claude

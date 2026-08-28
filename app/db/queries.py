@@ -1,6 +1,8 @@
 import json
 import duckdb
 
+from .helper import swap_geojson_coordinates
+
 
 def summarize_transmission_lines(
     con: duckdb.DuckDBPyConnection,
@@ -111,7 +113,6 @@ def calculate_overlap_km(
 def get_transmission_lines_data(
     con: duckdb.DuckDBPyConnection,
 ) -> dict:
-
     rows = con.sql("""
         SELECT
             Owner,
@@ -119,23 +120,14 @@ def get_transmission_lines_data(
             Status,
             Type,
             Length_Mil,
-
-            ST_AsGeoJSON(
-                ST_Force2D(
-                    ST_Transform(
-                        geom_3310,
-                        'EPSG:4326'
-                    )
-                )
-            ) AS geometry
-
+            ST_AsGeoJSON(geom) AS geometry,
         FROM transmission_lines
     """).fetchall()
 
     features = [
         {
             "type": "Feature",
-            "geometry": json.loads(geometry),
+            "geometry": swap_geojson_coordinates(json.loads(geometry)),
             "properties": {
                 "Owner": owner,
                 "kV": kv,
@@ -163,15 +155,10 @@ def get_transmission_lines_data(
 def get_wildlife_data(
     con: duckdb.DuckDBPyConnection,
 ) -> dict:
-
     cols = [
         column
         for column in con.sql("SELECT * FROM wildlife_lands LIMIT 0").columns
-        if column
-        not in {
-            "geom",
-            "geom_3310",
-        }
+        if column != "geom"
     ]
 
     select_columns = ", ".join(f"w.{column}" for column in cols)
@@ -179,16 +166,7 @@ def get_wildlife_data(
     query = f"""
         SELECT
             {select_columns},
-
-            ST_AsGeoJSON(
-                ST_Force2D(
-                    ST_Transform(
-                        w.geom_3310,
-                        'EPSG:4326'
-                    )
-                )
-            ) AS geometry
-
+            ST_AsGeoJSON(ST_Force2D(geom)) AS geometry,
         FROM wildlife_lands AS w
     """
 
@@ -202,7 +180,7 @@ def get_wildlife_data(
         features.append(
             {
                 "type": "Feature",
-                "geometry": json.loads(row[-1]),
+                "geometry": swap_geojson_coordinates(json.loads(row[-1])),
                 "properties": attributes,
             }
         )
@@ -237,24 +215,13 @@ def get_wildlife_transmission_intersections(
             t.Type AS transmission_type,
             t.Length_Mil AS transmission_length_miles,
 
-            ST_AsGeoJSON(
-                ST_Force2D(
-                    ST_Transform(
-                        ST_Intersection(
-                            t.geom_3310,
-                            w.geom_3310
-                        ),
-                        'EPSG:4326'
-                    )
-                )
-            ) AS geometry
+            ST_AsGeoJSON(t.geom) AS geometry,
 
         FROM transmission_lines AS t
-
         JOIN wildlife_lands AS w
             ON ST_Intersects(
-                t.geom_3310,
-                w.geom_3310
+                t.geom,
+                w.geom
             )
     """).fetchall()
 
@@ -283,7 +250,7 @@ def get_wildlife_transmission_intersections(
         features.append(
             {
                 "type": "Feature",
-                "geometry": json.loads(geometry),
+                "geometry": swap_geojson_coordinates(json.loads(geometry)),
                 "properties": {
                     "wildlife_id": wildlife_id,
                     "wildlife_property_type": wildlife_property_type,

@@ -10,6 +10,13 @@ This project uses the Model Context Protocol (MCP) to connect Claude to spatial 
 
 Instead of manually opening GIS software and performing spatial analysis, users can ask Claude questions using natural language.
 
+## Screen Shots
+![claude](public/claude.png)
+![arcgis](public/arcgis.png)
+![maplibre](public/maplibre.png)
+![chart](public/dashboard.png)
+
+
 Examples:
 
 ```text

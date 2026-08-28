@@ -26,11 +26,6 @@ def json_safe(value):
     return json.loads(json.dumps(value, default=str))
 
 
-# ---------------------------------------------------------------------------
-# DATA TOOLS
-# ---------------------------------------------------------------------------
-
-
 @mcp.tool()
 def get_summary_transmission_lines():
     """Return a summary of transmission lines."""
@@ -62,14 +57,12 @@ def get_summary_chart_instructions():
     """
 
     transmission = json_safe(summarize_transmission_lines(con))
-
     wildlife = json_safe(summarize_wildlife_lands(con))
-
     overlap_km = json_safe(calculate_overlap_km(con))
 
     result = {
         "chart_type": "grouped_bar_with_overlap_badge",
-        "title": ("San Joaquin Valley — " "Transmission Lines vs Wildlife Lands"),
+        "title": "San Joaquin Valley — Transmission Lines vs Wildlife Lands",
         "subtitle": "Summary with intersection overlay",
         "data": {
             "transmission": transmission,
@@ -141,7 +134,7 @@ def get_summary_chart_instructions():
             ],
         },
         "interactions": {
-            "bar_hover": ("Show exact value and percentage of total."),
+            "bar_hover": "Show exact value and percentage of total.",
             "kpi_animation": ("Count from 0 to the final value over 1.2 seconds."),
         },
         "notes": [
@@ -162,22 +155,22 @@ def get_arcgis_map_instructions():
     """
     Return instructions and live data for an ArcGIS Maps SDK
     for JavaScript 4.29 map.
+
+    The map should use the standard ArcGIS dark theme and native
+    ArcGIS UI components, including the standard dark legend.
     """
 
     transmission = json_safe(summarize_transmission_lines(con))
-
     wildlife = json_safe(summarize_wildlife_lands(con))
-
     overlap_km = json_safe(calculate_overlap_km(con))
-
     hit_wildlife = json_safe(find_wildlife_hit_by_transmission(con))
 
     result = {
         "sdk": {
             "name": "ArcGIS Maps SDK for JavaScript",
             "version": "4.29",
-            "cdn_css": ("https://js.arcgis.com/4.29/" "esri/themes/dark/main.css"),
-            "cdn_js": ("https://js.arcgis.com/4.29/"),
+            "cdn_css": "https://js.arcgis.com/4.29/esri/themes/dark/main.css",
+            "cdn_js": "https://js.arcgis.com/4.29/",
         },
         "data": {
             "transmission": transmission,
@@ -196,67 +189,87 @@ def get_arcgis_map_instructions():
                 "center": [-119.7, 36.8],
                 "zoom": 8,
             },
+            "ui": {
+                "theme": "arcgis-dark",
+                "use_standard_arcgis_theme": True,
+                "use_native_arcgis_widgets": True,
+            },
+            "widgets": [
+                "zoom",
+                "compass",
+                "home",
+                "fullscreen",
+                "scale_bar",
+                "legend",
+            ],
+            "legend": {
+                "type": "ArcGIS Legend widget",
+                "use_native_widget": True,
+                "theme": "dark",
+                "position": "bottom-right",
+            },
         },
+        "layers": {
+            "transmission_lines": {
+                "type": "GeoJSONLayer",
+                "title": "Transmission Lines",
+                "url": ("http://127.0.0.1:8000/transmission_lines"),
+                "renderer": {
+                    "type": "simple",
+                    "symbol": {
+                        "type": "simple-line",
+                        "color": "#E07B39",
+                        "width": 2,
+                    },
+                },
+            },
+            "wildlife_lands": {
+                "type": "GeoJSONLayer",
+                "title": "Wildlife Lands",
+                "url": ("http://127.0.0.1:8000/wildlife_lands"),
+                "renderer": {
+                    "type": "simple",
+                    "symbol": {
+                        "type": "simple-fill",
+                        "color": [
+                            58,
+                            125,
+                            68,
+                            0.35,
+                        ],
+                        "outline": {
+                            "color": "#3A7D44",
+                            "width": 1,
+                        },
+                    },
+                },
+            },
+            "overlap": {
+                "type": "GeoJSONLayer",
+                "title": "Transmission / Wildlife Overlap",
+                "url": ("http://127.0.0.1:8000/wildlife_lands_hit"),
+                "renderer": {
+                    "type": "simple",
+                    "symbol": {
+                        "type": "simple-line",
+                        "color": "#8B2FC9",
+                        "width": 3.5,
+                        "style": "dash",
+                    },
+                },
+            },
+        },
+        "layer_order": [
+            "wildlife_lands",
+            "transmission_lines",
+            "overlap",
+        ],
         "endpoints": {
             "transmission_lines": ("http://127.0.0.1:8000/transmission_lines"),
             "wildlife_lands": ("http://127.0.0.1:8000/wildlife_lands"),
             "wildlife_transmission_overlap": (
                 "http://127.0.0.1:8000/wildlife_lands_hit"
             ),
-        },
-        "layers": [
-            {
-                "id": "wildlife_lands",
-                "label": "Wildlife Lands",
-                "type": "GeoJSONLayer",
-                "url": ("http://127.0.0.1:8000/" "wildlife_lands"),
-            },
-            {
-                "id": "transmission_lines",
-                "label": "Transmission Lines",
-                "type": "GeoJSONLayer",
-                "url": ("http://127.0.0.1:8000/" "transmission_lines"),
-            },
-            {
-                "id": "overlap_highlight",
-                "label": "Transmission–Wildlife Overlap",
-                "type": "GeoJSONLayer",
-                "url": ("http://127.0.0.1:8000/" "wildlife_lands_hit"),
-            },
-        ],
-        "layer_order": [
-            "wildlife_lands",
-            "transmission_lines",
-            "overlap_highlight",
-        ],
-        "zoom_to_layer": {
-            "enabled": True,
-            "buttons": [
-                {
-                    "id": "zoom_wildlife",
-                    "label": "Wildlife Lands",
-                    "layer_id": "wildlife_lands",
-                },
-                {
-                    "id": "zoom_transmission",
-                    "label": "Transmission Lines",
-                    "layer_id": "transmission_lines",
-                },
-                {
-                    "id": "zoom_overlap",
-                    "label": "Overlap",
-                    "layer_id": "overlap_highlight",
-                },
-            ],
-            "behavior": [
-                "Wait for layer.when().",
-                "Use layer.fullExtent.",
-                "Call view.goTo(layer.fullExtent).",
-                "Use approximately 800ms animation.",
-                "Do not use hard-coded bounds.",
-                "Do not change layer visibility.",
-                "Handle empty layers gracefully.",
-            ],
         },
         "requirements": [
             "Return one self-contained HTML file.",
@@ -271,11 +284,36 @@ def get_arcgis_map_instructions():
             "Do not add authentication.",
             "Do not add custom headers.",
             "Use the supplied endpoints exactly.",
+            # ArcGIS UI
+            "Use the ArcGIS dark theme CSS.",
+            "Use the standard ArcGIS dark UI styling.",
+            "Use the native ArcGIS Legend widget.",
+            "Place the Legend widget in the bottom-right.",
+            "Do not create a custom HTML legend.",
+            "Do not override the ArcGIS Legend widget styling.",
+            "Do not create custom ArcGIS-style controls.",
+            # Map behavior
+            "Use the supplied initial center and zoom.",
+            "Do not automatically fit the map to any layer.",
+            "Do not calculate layer bounds for the initial view.",
+            "Do not create Zoom to Layer buttons.",
+            "Do not create a Zoom to All Layers button.",
+            "Do not add custom layer zoom controls.",
+            # Standard ArcGIS controls
+            "Use the standard ArcGIS zoom control.",
+            "Use the standard ArcGIS compass control.",
+            "Use the standard ArcGIS home control.",
+            "Use the standard ArcGIS fullscreen control.",
+            "Use the standard ArcGIS scale bar.",
+            "Use the standard ArcGIS Legend widget.",
+            "Use the standard ArcGIS Popups",
+            "Keep the ArcGIS interface visually native.",
+            "Do not replace the standard ArcGIS widget design.",
+            "Do not use MapLibre in the ArcGIS map.",
         ],
     }
 
     return json_safe(result)
-
 
 
 @mcp.tool()
@@ -285,11 +323,8 @@ def get_maplibre_map_instructions():
     """
 
     transmission = json_safe(summarize_transmission_lines(con))
-
     wildlife = json_safe(summarize_wildlife_lands(con))
-
     overlap_km = json_safe(calculate_overlap_km(con))
-
     hit_wildlife = json_safe(find_wildlife_hit_by_transmission(con))
 
     result = {
@@ -323,11 +358,9 @@ def get_maplibre_map_instructions():
                 "center": [-119.7, 36.8],
                 "zoom": 8,
             },
-            "fit_to_data": {
-                "source": "transmission_lines",
-                "padding": 50,
-                "max_zoom": 12,
-                "duration": 800,
+            "behavior": {
+                "fit_to_data": False,
+                "automatic_layer_zoom": False,
             },
         },
         "sources": {
@@ -377,72 +410,32 @@ def get_maplibre_map_instructions():
             "transmission_lines",
             "overlap",
         ],
-        "zoom_to_layer": {
-            "enabled": True,
-            "buttons": [
-                {
-                    "id": "zoom_all",
-                    "label": "All Layers",
-                    "sources": [
-                        "wildlife_lands",
-                        "transmission_lines",
-                        "overlap",
-                    ],
-                },
-                {
-                    "id": "zoom_wildlife",
-                    "label": "Wildlife Lands",
-                    "source": "wildlife_lands",
-                },
-                {
-                    "id": "zoom_transmission",
-                    "label": "Transmission Lines",
-                    "source": "transmission_lines",
-                },
-                {
-                    "id": "zoom_overlap",
-                    "label": "Overlap",
-                    "source": "overlap",
-                },
-            ],
-            "behavior": [
-                "Wait for the map to load.",
-                "Read bounds from loaded GeoJSON data.",
-                "Use map.fitBounds().",
-                "Do not use hard-coded bounds.",
-                "Use 50px padding.",
-                "Use 800ms animation.",
-                "Do not change layer visibility.",
-                "Handle empty sources gracefully.",
-            ],
+        "controls": {
+            "navigation": True,
+            "fullscreen": True,
+            "scale": True,
+            "legend": True,
         },
-        "popups": {
-            "wildlife_lands": [
-                "PROP_NAME",
-                "PROP_TYPE",
-                "REGION",
-                "ACCESS",
-                "Shape__Are",
-            ],
-            "transmission_lines": [
-                "Name",
-                "kV",
-                "Owner",
-                "Status",
-                "Circuit",
-                "Type",
-                "Length_Mil",
-            ],
-            "overlap": [
-                "wildlife_property_name",
-                "wildlife_property_type",
-                "wildlife_region",
-                "transmission_name",
-                "transmission_kv",
-                "transmission_owner",
-                "transmission_status",
-                "transmission_circuit",
-                "transmission_type",
+        "legend": {
+            "type": "custom",
+            "items": [
+                {
+                    "label": "Wildlife Lands",
+                    "color": "#3A7D44",
+                    "opacity": 0.35,
+                    "type": "fill",
+                },
+                {
+                    "label": "Transmission Lines",
+                    "color": "#E07B39",
+                    "type": "line",
+                },
+                {
+                    "label": "Transmission / Wildlife Overlap",
+                    "color": "#8B2FC9",
+                    "type": "line",
+                    "dashed": True,
+                },
             ],
         },
         "requirements": [
@@ -453,15 +446,18 @@ def get_maplibre_map_instructions():
             "Do not require an API key.",
             "Use the supplied GeoJSON URLs exactly.",
             "Use EPSG:4326 GeoJSON.",
-            "Wait for GeoJSON sources before calculating bounds.",
-            "Fit initially to transmission lines.",
-            "Create the Zoom to Layer control.",
-            "Include All Layers, Wildlife Lands, Transmission Lines, and Overlap.",
-            "Calculate bounds dynamically.",
-            "Use map.fitBounds().",
-            "Add popups.",
-            "Add legend.",
-            "Add navigation, fullscreen, and scale controls.",
+            "Use the supplied initial center and zoom.",
+            "Do not automatically fit the map to any layer.",
+            "Do not calculate bounds for the initial view.",
+            "Do not create Zoom to Layer buttons.",
+            "Do not create Zoom to All Layers buttons.",
+            "Do not add custom layer zoom controls.",
+            "Wait for GeoJSON sources to load before interacting with them.",
+            "Add popups for feature information.",
+            "Add the supplied legend.",
+            "Add navigation controls.",
+            "Add fullscreen control.",
+            "Add scale control.",
             "Handle loading errors.",
             "Log source errors.",
             "Do not use ArcGIS.",

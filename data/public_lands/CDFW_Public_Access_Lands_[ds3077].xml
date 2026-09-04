@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+    <idinfo>
+        <citation>
+            <citeinfo>
+                <origin/>
+                <pubdate>20250902</pubdate>
+                <title>CDFW Public Access Lands [ds3077]</title>
+                <geoform>vector digital data</geoform>
+                <onlink>https://www.wildlife.ca.gov/Data/BIOS</onlink>
+                <onlink>https://filelib.wildlife.ca.gov/Public/BDB/GIS/BIOS/Public_Datasets/3000_3099/ds3077.zip</onlink>
+            </citeinfo>
+        </citation>
+        <descript>
+            <abstract>The CDFW Public Access Lands dataset is a subset of the CDFW Lands dataset. It contains lands that might be accessible to the public for hunting, fishing, wildlife watching, and other recreational opportunities. For additional information please visit the CDFW Lands web page, "Places to Visit", for a list of wildlife areas and ecological reserves at https://www.wildlife.ca.gov/Lands/Places-to-Visit . Please note that some lands may not be accessible due to seasonal closure or protection of resources and habitat. Please refer to the regulations or contact CDFW regional or area office prior to visit. Additional information for some wildlife areas or ecological reserves may be found at www.wildlife.ca.gov/Lands. For information on public use regulations on Department lands, please refer to the Public Uses on State and Federal Lands section of the Waterfowl, Upland Game, and Public Use Regulations booklet for both statewide and property-specific regulations https://wildlife.ca.gov/Regulations. All visitors are responsible for knowing and following the general and property-specific regulations.This is a generalized version that has been dissolved and has a shorter attribute table than the original version. This dataset is a digitized geographical inventory of selected lands owned and/or administered by the California Department of Fish and Wildlife (CDFW). Physical boundaries of individual parcels are determined by the descriptions contained in legal documents and assessor parcel maps relating to that parcel. The approximate parcel boundaries are drawn onto U.S. Geological Survey 7.5'-series topographic maps, then digitized and attributed before being added to the dataset. In some cases, assessor parcel or best available datasets are used to digitize the boundary. Using parcel data to adjust the boundaries is a work in progress and will be incorporated in the future. Township, range, and section lines were based on the U.S. Geological Survey 7.5' series topographic maps (1:24,000 - scale). In some areas, the boundaries will not align with the Bureau of Land Management's Public Lands Survey System (PLSS).</abstract>
+            <purpose>This dataset is intended to provide information on the location of publicly accessible lands owned or operated by the California Department of Fish and Wildlife (CDFW) within the state. This dataset is not intended for navigational purposes. Please note that some lands may not be accessible due to the protection of resources and habitat. It is recommended that users contact the appropriate regional office for access information and consult regulations for CDFW lands in Title 14, subsections 550, 550.5, 551, 552, 630 and 702. For information on public use regulations on Department lands, please refer to the Public Uses on State and Federal Lands section of the Waterfowl, Upland Game, and Public Use Regulations booklet for both statewide and property-specific regulations https://wildlife.ca.gov/Regulations. All visitors are responsible for knowing and following the general and property-specific regulations. This coverage does not provide legal determination of parcel acreages or boundaries. Legal parcel acreages are based on County Assessor records. Users should contact the Wildlife Branch, Lands Program for this information and related data.</purpose>
+            <supplinf>Some field changes and additions as of September 2010: The property name and county are entered as upper and lower cases. The property name is fully spelled out (i.e. Ash Creek WA is now Ash Creek Wildlife Area). Added DFG_URL (DFG's Web site) and ACCESS (Accessibility of property) fields.
+
+As of January 1, 2013 our new name is the California Department of Fish and Wildlife (CDFW).  The new department web and email addresses also took effect.
+
+In January 2020, the Deparment finished a major consolidation of various branches. The following braches moved to the West Sacramento office at 1010 Riverside Parkway:  Office of Spill Prevention and Response, Habitat Conservation Planning Branch, Audits Branch, Engineering Branch, Wildlife Branch, Water Branch and Fisheries Branch.</supplinf>
+        </descript>
+        <status>
+            <progress>In work</progress>
+            <update>Continually</update>
+        </status>
+        <spdom>
+            <bounding>
+                <westbc>-124.397231</westbc>
+                <eastbc>-113.860559</eastbc>
+                <northbc>42.033054</northbc>
+                <southbc>32.512283</southbc>
+            </bounding>
+        </spdom>
+        <keywords>
+            <theme>
+                <themekt>None</themekt>
+                <themekey>Resource Lands</themekey>
+                <themekey>Ecological Reserves</themekey>
+                <themekey>Land Ownership</themekey>
+                <themekey>Fishing</themekey>
+                <themekey>Wildlife Areas</themekey>
+                <themekey>Biological Database</themekey>
+                <themekey>Wildlife Protection</themekey>
+                <themekey>State Lands</themekey>
+                <themekey>California Department of Fish and Wildlife</themekey>
+                <themekey>Hunting</themekey>
+                <themekey>Conservation Planning</themekey>
+                <themekey>Threatened and Endangered Species</themekey>
+            </theme>
+            <theme>
+                <themekt>ISO 19115 Topic Category</themekt>
+                <themekey>boundaries</themekey>
+                <themekey>planningCadastre</themekey>
+            </theme>
+            <place>
+                <placekt>None</placekt>
+                <placekey>California</placekey>
+            </place>
+        </keywords>
+        <accconst>None</accconst>
+        <useconst>This dataset is not a surveyed product and is not a legal record of original survey measurements. They are representations or reproductions of information using various sources, scales, and precision of boundary data. As such, the data does not carry legal authority to determine a boundary, the location of fixed works nor is it suitable for navigational purposes. The California Department of Fish and Wildlife makes no warranties or guarantees, either expressed or implied as to the completeness, accuracy, or correctness of such product, nor accepts any liability, arising from any incorrect, incomplete or misleading information contained therin. Users are responsible for ensuring the appropriate use of the data. It is strongly recommended that users acquire this dataset directly from the California Department of Fish and Wildlife and not indirectly through other sources which may have outdated or misinterpreted information. Please contact Biogeographic Data Branch (BDB@Wildlife.ca.gov) at California Department of Fish and Wildlife before re-distributing, altering, or re-publishing the data.License: This work is licensed under Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/).  Using the citation standards recommended for BIOS datasets (https://www.wildlife.ca.gov/Data/BIOS/Citing-BIOS) satisfies the attribution requirements of this license.Disclaimer: The State makes no claims, promises, or guarantees about the accuracy, completeness, reliability, or adequacy of these data and expressly disclaims liability for errors and omissions in these data. No warranty of any kind, implied, expressed, or statutory, including but not limited to the warranties of non-infringement of third party rights, title, merchantability, fitness for a particular purpose, and freedom from computer virus, is given with respect to these data.</useconst>
+        <ptcontac>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>California Department of Fish and Wildlife</cntorg>
+                </cntorgp>
+                <cntpos>GIS Specialist</cntpos>
+                <cntaddr>
+                    <addrtype>mailing and physical</addrtype>
+                    <address>1010 Riverside Parkway</address>
+                    <city>Sacramento</city>
+                    <state>CA</state>
+                    <postal>95605</postal>
+                    <country>US</country>
+                </cntaddr>
+                <cntemail>BDB@Wildlife.ca.gov</cntemail>
+            </cntinfo>
+        </ptcontac>
+        <ptcontac>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>California Department of Fish and Wildlife</cntorg>
+                </cntorgp>
+                <cntpos>GIS Specialist</cntpos>
+                <cntaddr>
+                    <addrtype>mailing and physical</addrtype>
+                    <address>1010 Riverside Parkway</address>
+                    <city>West Sacramento</city>
+                    <state>CA</state>
+                    <postal>95605</postal>
+                    <country>US</country>
+                </cntaddr>
+                <cntemail>BDB@Wildlife.ca.gov</cntemail>
+            </cntinfo>
+        </ptcontac>
+        <datacred>Alison Nevins; Res Data Spec I; California Department of Fish and Wildlife (CDFW); DTD-BDB; ; ; ; ; Alison.Nevins@wildlife.ca.gov; </datacred>
+        <native>Esri ArcGIS 13.4.0.55405</native>
+    </idinfo>
+    <dataqual>
+        <attracc>
+            <attraccr>Digitized parcels are reviewed by comparing automatically computed acreages against legal acreages defined by title documents or county assessor parcel map information. Corrections are made for all properties which exceed 10 percent difference between the above two acreages. While the computed acreage may be sufficiently accurate for general use such as large scale conservation planning, users are advised to contact the Wildlife and Fisheries Division, Land's Program when official, acreage-specific property or parcel information is required. Area measures of parcel polygons, automatically calculated by ARC/INFO in the field AREA, are used for quality control only. The Lands Program also uses the AREA field to calculate an acreage value in the field GIS_ACRES. Users should not cite any calculated acreage values relating to dfg_lands parcels. This is not a survey product. It is referential only. Contact Wildlife and Fisheries Division, Land's Program for details.</attraccr>
+        </attracc>
+        <lineage>
+            <procstep>
+                <procdesc>Download URL updated in online linkage.</procdesc>
+                <procdate>20060601</procdate>
+                <proccont>
+                    <cntinfo>
+                        <cntorgp>
+                            <cntorg>California Department of Fish and Game</cntorg>
+                            <cntper>GIS Service Center</cntper>
+                        </cntorgp>
+                        <cntemail>geodata@dfg.ca.gov</cntemail>
+                    </cntinfo>
+                </proccont>
+            </procstep>
+        </lineage>
+    </dataqual>
+    <spdoinfo>
+        <direct>Vector</direct>
+        <ptvctinf>
+            <sdtsterm>
+                <sdtstype>GT-polygon composed of chains</sdtstype>
+                <ptvctcnt>298</ptvctcnt>
+            </sdtsterm>
+        </ptvctinf>
+    </spdoinfo>
+    <eainfo>
+        <detailed>
+            <enttyp>
+                <enttypl>ds3077</enttypl>
+            </enttyp>
+            <attr>
+                <attrlabl>OBJECTID</attrlabl>
+                <attrdef>Internal feature number.</attrdef>
+                <attrdefs>Esri</attrdefs>
+                <attrdomv>
+                                        
+                    <udom>Sequential unique whole numbers that are automatically generated.</udom>
+                                    
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>Shape</attrlabl>
+                <attrdef>Feature geometry.</attrdef>
+                <attrdefs>ESRI</attrdefs>
+                <attrdomv>
+                                        
+                    <udom>Coordinates defining the features.</udom>
+                                    
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>PROP_TYPE</attrlabl>
+                <attrdef>Property Type.  Classification of the property as either Wildlife Area, Ecological Reserve, Public Access, or Fish Hatchery.</attrdef>
+                <attrdefs>Blank</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>PROP_NAME</attrlabl>
+                <attrdef>Property Name.  Official name of property as assigned and used by CDFW.</attrdef>
+                <attrdefs>Blank</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>REGION</attrlabl>
+            </attr>
+            <attr>
+                <attrlabl>LINK</attrlabl>
+                <attrdef>CDFW's web site address for a given Ecological Reserve or Wildlife Area.</attrdef>
+                <attrdefs>Blank</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>ACCESS</attrlabl>
+                <attrdef>Information on the restrictions to public access on the property.</attrdef>
+                <attrdefs>Blank</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>Shape_Length</attrlabl>
+                <attrdef>Length of feature in internal units.</attrdef>
+                <attrdefs>Esri</attrdefs>
+                <attrdomv>
+                                        
+                    <udom>Positive real numbers that are automatically generated.</udom>
+                                    
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>Shape_Area</attrlabl>
+                <attrdef>Area of feature in internal units squared.</attrdef>
+                <attrdefs>Esri</attrdefs>
+                <attrdomv>
+                                        
+                    <udom>Positive real numbers that are automatically generated.</udom>
+                                    
+                </attrdomv>
+            </attr>
+        </detailed>
+        <overview>
+            <eaover>Detailed Field Descriptions
+  
+PROP_TYPE - Property Type.  Classification of the property as either Wildlife Area, Ecological Reserve, Public Access (fishing accesses, boat ramps, piers), or Fish Hatchery.
+
+PROP_NAME - Property Name. Official name of property as assigned and used by CDFW.
+
+LINK - CDFW's Web site address for a given Ecological Reserve or Wildlife Area.
+
+ACCESS - Information on the restriction to public access on the property. For blank entry, please contact CDFW regional offices or visit CDFW's Web site for more access information.</eaover>
+        </overview>
+    </eainfo>
+    <distinfo>
+        <distrib>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>California Department of Fish and Wildlife</cntorg>
+                    <cntper>GIS Service Center</cntper>
+                </cntorgp>
+                <cntemail>geodata@dfg.ca.gov</cntemail>
+            </cntinfo>
+        </distrib>
+        <distliab>See access and use constraints information.</distliab>
+    </distinfo>
+    <metainfo>
+        <metd>20250902</metd>
+        <metc>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>California Department of Fish and Wildlife</cntorg>
+                </cntorgp>
+                <cntpos>GIS Specialist</cntpos>
+                <cntaddr>
+                    <addrtype>mailing and physical</addrtype>
+                    <address>1010 Riverside Parkway</address>
+                    <city>West Sacramento</city>
+                    <state>CA</state>
+                    <postal>95605</postal>
+                    <country>US</country>
+                </cntaddr>
+                <cntemail>BDB@Wildlife.ca.gov</cntemail>
+            </cntinfo>
+        </metc>
+        <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+        <metstdv>FGDC-STD-001-1998</metstdv>
+        <mettc>local time</mettc>
+        <metuc>This dataset is not a surveyed product and is not a legal record of original survey measurements. They are representations or reproductions of information using various sources, scales, and precision of boundary data. As such, the data do not carry legal authority to determine a boundary, the location of fixed works nor is it suitable for navigational purposes. The California Department of Fish and Wildlife shall not be held liable for any use or misuse of the data. Users are responsible for ensuring the appropriate use of the data . It is strongly recommended that users acquire this dataset directly from the California Department of Fish and Wildlife and not indirectly through other sources which may have outdated or misinterpreted information. Please contact Biogeographic Data Branch (BDB@Wildlife.ca.gov) at California Department of Fish and Wildlife before re-distributing, altering, or re-publishing the data.</metuc>
+    </metainfo>
+</metadata>

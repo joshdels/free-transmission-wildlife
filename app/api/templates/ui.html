@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/static/css/styles.css" />
+
+    <title>GIS Assistant</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- ========================================= -->
+      <!-- CHAT                                      -->
+      <!-- ========================================= -->
+
+      <main id="chat">
+        <header id="header">
+          <strong> GIS Assistant </strong>
+
+          <span> ● Connected </span>
+        </header>
+
+        <div id="messages">
+          <div class="welcome">
+            <h1>How can I help?</h1>
+
+            <p>
+              Ask me about transmission lines, wildlife lands, intersections,
+              maps, or analysis.
+            </p>
+          </div>
+        </div>
+
+        <form id="chat-form">
+          <div class="input-box">
+            <textarea
+              id="chat-input"
+              placeholder="Ask the GIS assistant..."
+              rows="1"
+              autocomplete="off"
+            ></textarea>
+
+            <button type="submit">↑</button>
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <script src="/static/js/ai-chat.js"></script>
+  </body>
+</html>

@@ -1,0 +1,706 @@
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    color: #222;
+    background: #fff;
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+#app {
+    height: 100vh;
+    display: flex;
+}
+
+
+/* =========================================================
+   CHAT
+   ========================================================= */
+
+#chat {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #fff;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+#header {
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 24px;
+
+    border-bottom: 1px solid #eee;
+}
+
+#header strong {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+#header span {
+    font-size: 11px;
+    color: #777;
+}
+
+
+/* =========================================================
+   MESSAGES
+   ========================================================= */
+
+#messages {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 40px 30px 50px;
+
+    scroll-behavior: smooth;
+}
+
+
+/* =========================================================
+   WELCOME
+   ========================================================= */
+
+.welcome {
+    max-width: 650px;
+
+    margin: 120px auto;
+
+    text-align: center;
+}
+
+.welcome h1 {
+    margin: 0 0 10px;
+
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.welcome p {
+    margin: 0;
+
+    color: #888;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+.message {
+    max-width: 760px;
+
+    margin: 0 auto 28px;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   USER MESSAGE
+   ========================================================= */
+
+.message.user {
+    text-align: right;
+}
+
+.message.user .bubble {
+    display: inline-block;
+
+    max-width: 75%;
+
+    padding: 10px 14px;
+
+    background: #f1f1f1;
+
+    border-radius: 14px;
+
+    text-align: left;
+
+    line-height: 1.5;
+
+    white-space: pre-wrap;
+}
+
+
+/* =========================================================
+   ASSISTANT MESSAGE
+   ========================================================= */
+
+.message.assistant {
+    text-align: left;
+}
+
+.message.assistant .bubble {
+    max-width: 760px;
+
+    padding: 0;
+
+    color: #242424;
+
+    line-height: 1.75;
+
+    white-space: normal;
+}
+
+
+/* =========================================================
+   ASSISTANT PARAGRAPHS
+   ========================================================= */
+
+.message.assistant .bubble p {
+    margin: 0 0 16px;
+}
+
+.message.assistant .bubble p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   ASSISTANT HEADINGS
+   ========================================================= */
+
+.message.assistant .bubble h1,
+.message.assistant .bubble h2,
+.message.assistant .bubble h3,
+.message.assistant .bubble h4 {
+    margin-top: 24px;
+    margin-bottom: 10px;
+
+    line-height: 1.35;
+
+    font-weight: 600;
+}
+
+.message.assistant .bubble h1 {
+    font-size: 20px;
+}
+
+.message.assistant .bubble h2 {
+    font-size: 18px;
+}
+
+.message.assistant .bubble h3 {
+    font-size: 15px;
+}
+
+.message.assistant .bubble h4 {
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   BOLD / ITALIC
+   ========================================================= */
+
+.message.assistant .bubble strong {
+    font-weight: 650;
+    color: #171717;
+}
+
+.message.assistant .bubble em {
+    color: #555;
+}
+
+
+/* =========================================================
+   LISTS
+   ========================================================= */
+
+.message.assistant .bubble ul,
+.message.assistant .bubble ol {
+    margin: 10px 0 18px;
+
+    padding-left: 24px;
+}
+
+.message.assistant .bubble li {
+    margin: 6px 0;
+
+    padding-left: 4px;
+}
+
+.message.assistant .bubble li > p {
+    margin-bottom: 5px;
+}
+
+
+/* =========================================================
+   INLINE CODE
+   ========================================================= */
+
+.message.assistant .bubble code {
+    padding: 2px 6px;
+
+    border-radius: 5px;
+
+    background: #f3f3f3;
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   CODE BLOCK
+   ========================================================= */
+
+.message.assistant .bubble pre {
+    margin: 16px 0;
+
+    padding: 15px 16px;
+
+    overflow-x: auto;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 10px;
+
+    background: #f7f7f7;
+
+    line-height: 1.55;
+}
+
+.message.assistant .bubble pre code {
+    padding: 0;
+
+    background: transparent;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+.message.assistant .bubble a {
+    color: #2563eb;
+
+    text-decoration: none;
+}
+
+.message.assistant .bubble a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   BLOCKQUOTE
+   ========================================================= */
+
+.message.assistant .bubble blockquote {
+    margin: 16px 0;
+
+    padding: 8px 16px;
+
+    border-left: 3px solid #ddd;
+
+    color: #666;
+}
+
+
+/* =========================================================
+   HORIZONTAL RULE
+   ========================================================= */
+
+.message.assistant .bubble hr {
+    margin: 22px 0;
+
+    border: 0;
+
+    border-top: 1px solid #eee;
+}
+
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+
+#chat-form {
+    padding: 20px 30px;
+}
+
+.input-box {
+    max-width: 760px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: flex-end;
+
+    gap: 8px;
+
+    padding: 10px 10px 10px 15px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 14px;
+
+    background: white;
+
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+}
+
+#chat-input {
+    flex: 1;
+
+    resize: none;
+
+    border: none;
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    padding: 7px 0;
+
+    line-height: 1.5;
+}
+
+#chat-input::placeholder {
+    color: #aaa;
+}
+
+.input-box button {
+    width: 34px;
+    height: 34px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #222;
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: background 0.15s ease;
+}
+
+.input-box button:hover {
+    background: #333;
+}
+
+
+/* =========================================================
+   RESULTS PANEL
+   ========================================================= */
+
+#results {
+    width: 42%;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #fafafa;
+
+    border-left: 1px solid #eee;
+}
+
+
+/* =========================================================
+   RESULTS HEADER
+   ========================================================= */
+
+.results-header {
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 20px;
+
+    background: white;
+
+    border-bottom: 1px solid #eee;
+}
+
+.results-header strong {
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.results-header button {
+    border: none;
+
+    background: none;
+
+    font-size: 22px;
+
+    color: #888;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   RESULTS CONTENT
+   ========================================================= */
+
+#results-content {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 20px;
+}
+
+.empty {
+    margin-top: 100px;
+
+    text-align: center;
+
+    color: #999;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   RESULT CARD
+   ========================================================= */
+
+.result-card {
+    padding: 16px;
+
+    margin-bottom: 12px;
+
+    background: white;
+
+    border: 1px solid #eee;
+
+    border-radius: 10px;
+}
+
+.result-card h3 {
+    margin: 0 0 12px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.metric {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 8px 0;
+
+    border-bottom: 1px solid #eee;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   RESULT JSON / RAW DATA
+   ========================================================= */
+
+.result-card pre {
+    margin: 12px 0 0;
+
+    padding: 12px;
+
+    overflow-x: auto;
+
+    border-radius: 8px;
+
+    background: #f6f6f6;
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   HTML FILE CARD
+   ========================================================= */
+
+.file-card {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    max-width: 500px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 10px;
+
+    background: #fafafa;
+}
+
+.file-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.file-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #222;
+
+    color: white;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+.file-name {
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.file-type {
+    margin-top: 3px;
+
+    font-size: 11px;
+
+    color: #888;
+}
+
+.download-button {
+    padding: 8px 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    background: white;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+.download-button:hover {
+    background: #f0f0f0;
+}
+
+
+/* =========================================================
+   SCROLLBARS
+   ========================================================= */
+
+#messages::-webkit-scrollbar,
+#results-content::-webkit-scrollbar {
+    width: 7px;
+}
+
+#messages::-webkit-scrollbar-thumb,
+#results-content::-webkit-scrollbar-thumb {
+    background: #ddd;
+
+    border-radius: 10px;
+}
+
+#messages::-webkit-scrollbar-track,
+#results-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    #results {
+        display: none;
+    }
+
+    #messages {
+        padding: 25px 20px 40px;
+    }
+
+    .message {
+        max-width: 100%;
+    }
+
+    .message.user .bubble {
+        max-width: 85%;
+    }
+
+    #chat-form {
+        padding: 15px 20px;
+    }
+
+    .input-box {
+        max-width: 100%;
+    }
+}
+

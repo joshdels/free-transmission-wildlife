@@ -1,4 +1,5 @@
-const socket = new WebSocket("ws://localhost:8000/ws/ai");
+const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+const socket = new WebSocket(`${protocol}//${window.location.host}/ws/ai`);
 
 const messages = document.getElementById("messages");
 const input = document.getElementById("chat-input");

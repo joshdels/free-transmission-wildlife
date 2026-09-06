@@ -18,3 +18,6 @@ datas:
 
 kill:
 	pkill -f claude
+
+docker:
+	docker compose up -d --build
